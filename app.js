@@ -4,7 +4,7 @@
     const app = {
         converterApiUrl: 'https://free.currencyconverterapi.com/api/v5',
         // countryApiUrl: 'https://restcountries.eu/rest/v2',
-        countryApiUrl: 'http://www.countryflags.io',
+        countryApiUrl: 'https://www.countryflags.io',
         fromAmount: document.querySelector('#fromAmount'),
         toAmount: document.querySelector('#toAmount'),
         fromCurrency: document.querySelector('#fromCurrency'),
@@ -19,6 +19,7 @@
     app.init = () => {
 
         app.fetchCurrencies().then(app.convertTo);
+        fromAmount.focus();
     }
 
     // getters and setters for the from and to amounts
