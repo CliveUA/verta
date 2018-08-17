@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+    // App configuration
     const app = {
         converterApiUrl: 'https://free.currencyconverterapi.com/api/v5',
         // countryApiUrl: 'https://restcountries.eu/rest/v2',
@@ -15,21 +16,22 @@
         currencies: {}
     }
 
-    // Instialize the application
+    // Initialize the application
     app.init = () => {
-
+        // Fetch all currencies and add them to the ui.
+        // Then perform a conversion on the default currencies
         app.fetchCurrencies().then(app.convertTo);
         fromAmount.focus();
     }
 
-    // getters and setters for the from and to amounts
+    // Getters and setters for the from and to amounts
     app.getFromAmount = () => parseFloat(app.fromAmount.value);
 
-    app.setFromAmount = (amount) => app.fromAmount.value = amount;
+    app.setFromAmount = (amount) => app.fromAmount.value = amount.toFixed(2);
 
     app.getToAmount = () => parseFloat(app.toAmount.value);
 
-    app.setToAmount = (amount) => app.toAmount.value = amount;
+    app.setToAmount = (amount) => app.toAmount.value = amount.toFixed(2);
 
     app.setExchangeRate = (fromCurrencyName, toCurrencyName, rate) => {
         app.exchangeRate.querySelector('#fromCurrencyName').innerHTML = fromCurrencyName;
