@@ -148,9 +148,9 @@
     });
 
     window.addEventListener('load',function() {
-        setTimeout(function(){
+        setTimeout(function() {
             // Hide the address bar!
-            window.scrollTo(0, 1);
+            window.scrollTo(0, 0);
         }, 0);
     });
 
