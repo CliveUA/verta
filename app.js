@@ -27,11 +27,11 @@
     // Getters and setters for the from and to amounts
     app.getFromAmount = () => parseFloat(app.fromAmount.value);
 
-    app.setFromAmount = (amount) => app.fromAmount.value = amount.toFixed(2);
+    app.setFromAmount = (amount) => app.fromAmount.value = amount
 
     app.getToAmount = () => parseFloat(app.toAmount.value);
 
-    app.setToAmount = (amount) => app.toAmount.value = amount.toFixed(2);
+    app.setToAmount = (amount) => app.toAmount.value = amount
 
     app.setExchangeRate = (fromCurrencyName, toCurrencyName, rate) => {
         app.exchangeRate.querySelector('#fromCurrencyName').innerHTML = fromCurrencyName;
@@ -145,6 +145,13 @@
 
     app.toAmount.addEventListener('keyup', () => {
         app.convertFrom();
+    });
+
+    window.addEventListener('load',function() {
+        setTimeout(function(){
+            // Hide the address bar!
+            window.scrollTo(0, 1);
+        }, 0);
     });
 
     app.init();
