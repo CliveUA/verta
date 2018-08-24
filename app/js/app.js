@@ -13,7 +13,9 @@
         toCurrency: document.querySelector('#toCurrency'),
         fromFlag: document.querySelector('#fromFlag'),
         toFlag: document.querySelector('#toFlag'),
-        exchangeRate: document.querySelector('.exchange-rate'),
+        exchangeRate: document.querySelector('#exchangeRate'),
+        fromCurrencyName: document.querySelector('#fromCurrencyName'),
+        toCurrencyName: document.querySelector('#toCurrencyName'),
         currencies: {}
     }
 
@@ -25,23 +27,23 @@
         fromAmount.focus();
     }
 
-    // Getters and setters for the from and to amounts
+    // Getters and setters for the @from and @to amounts in the ui
     app.getFromAmount = () => parseFloat(app.fromAmount.value);
 
-    app.setFromAmount = (amount) => app.fromAmount.value = amount
+    app.setFromAmount = (amount) => app.fromAmount.value = amount;
 
     app.getToAmount = () => parseFloat(app.toAmount.value);
 
-    app.setToAmount = (amount) => app.toAmount.value = amount
+    app.setToAmount = (amount) => app.toAmount.value = amount;
 
     app.setExchangeRate = (fromCurrencyName, toCurrencyName, rate) => {
-        app.exchangeRate.querySelector('#fromCurrencyName').innerHTML = fromCurrencyName;
-        app.exchangeRate.querySelector('#toCurrencyName').innerHTML = toCurrencyName;
-        app.exchangeRate.querySelector('#exchangeRate').innerHTML = rate;
+        app.fromCurrencyName.innerHTML = fromCurrencyName;
+        app.toCurrencyName.innerHTML = toCurrencyName;
+        app.exchangeRate.innerHTML = rate;
     }
 
     app.setCountryFlag = (flag, code) => {
-        flag.src = `${app.countryApiUrl}/${code}/flat/24.png`
+        flag.src = `${app.countryApiUrl}/${code}/flat/24.png`;
     }
 
     // Gets the rate from @from to @to
