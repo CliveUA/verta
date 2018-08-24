@@ -24,7 +24,6 @@
         // Fetch all currencies and add them to the ui.
         // Then perform a conversion on the default currencies
         app.fetchCurrencies().then(app.convertTo);
-        fromAmount.focus();
     }
 
     // Getters and setters for the @from and @to amounts in the ui
