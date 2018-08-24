@@ -33,5 +33,10 @@ module.exports = {
 	},
 	conventions: {
 		assets: [/^(?!app\/(css|js)).*/] // Files not in `css` or `js` dir (e.g img, html).
+	},
+	modules: {
+		autoRequire: {
+			'app.js': ['js/app']
+		}
 	}
 }

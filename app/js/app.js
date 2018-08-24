@@ -1,7 +1,7 @@
 (function () {
 
     'use strict';
-console.log('we here');
+
     // App configuration
     const app = {
         converterApiUrl: 'https://free.currencyconverterapi.com/api/v5',
