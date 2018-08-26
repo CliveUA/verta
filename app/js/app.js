@@ -16,7 +16,8 @@
         exchangeRate: document.querySelector('#exchangeRate'),
         fromCurrencyName: document.querySelector('#fromCurrencyName'),
         toCurrencyName: document.querySelector('#toCurrencyName'),
-        currencies: {}
+        currencies: {},
+        lastEditedInput: document.querySelector('#fromAmount')
     }
 
     // Initialize the application
@@ -104,7 +105,7 @@
         }
     }
 
-    // Fetches all available currencies, stores them in 
+    // Fetches all available currencies, stores them in
     // app.currencies and adds them to the UI.
     app.fetchCurrencies = () => {
         const currenciesEndpoint = `${app.converterApiUrl}/currencies`;
@@ -125,6 +126,15 @@
             });
     }
 
+    // Converts the last edited input amount
+    app.convertLastEditedInput = () => {
+        if (app.lastEditedInput === app.fromAmount) {
+            app.convertTo();
+        } else if (app.lastEditedInput === app.toAmount) {
+            app.convertFrom();
+        }
+    }
+
     /*****************************************************************************
      *
      * Event listeners for UI elements
@@ -132,28 +142,29 @@
      ****************************************************************************/
     // converts fromCurrency to toCurrency when fromCurrency changes
     app.fromCurrency.addEventListener('change', () => {
-        app.convertTo();
+        app.convertLastEditedInput();
         app.setCountryFlag(app.fromFlag, app.fromCurrency.value.substring(0, 2));
     });
 
     app.toCurrency.addEventListener('change', () => {
-        app.convertTo();
+        app.convertLastEditedInput();
         app.setCountryFlag(app.toFlag, app.toCurrency.value.substring(0, 2));
     });
 
     app.fromAmount.addEventListener('keyup', () => {
+        if (app.lastEditedInput !== app.fromAmount) {
+            app.lastEditedInput = app.fromAmount;
+        }
+
         app.convertTo();
     });
 
     app.toAmount.addEventListener('keyup', () => {
-        app.convertFrom();
-    });
+        if (app.lastEditedInput !== app.toAmount) {
+            app.lastEditedInput = app.toAmount;
+        }
 
-    window.addEventListener('load',function() {
-        setTimeout(function() {
-            // Hide the address bar!
-            window.scrollTo(0, 0);
-        }, 0);
+        app.convertFrom();
     });
 
     app.init();
