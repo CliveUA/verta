@@ -94,13 +94,21 @@
     app.addCurrencies = () => {
         // if we have currencies
         if (Object.keys(app.currencies).length > 0) {
+            // sort the currencies
+            const sortedCurrencies = Object.keys(app.currencies).sort(function(a, b) {
+                if (a < b) { return -1 };
+                if (a > b) { return 1 };
+
+                return 0;
+            });
+
             // add them to the 'from' and 'to' currency dropdowns
-            for (const index in app.currencies) {
+            for (const currency of sortedCurrencies) {
                 app.fromCurrency.options[app.fromCurrency.options.length] =
-                    new Option(app.currencies[index].id, app.currencies[index].id);
+                    new Option(currency, currency);
 
                 app.toCurrency.options[app.toCurrency.options.length] =
-                    new Option(app.currencies[index].id, app.currencies[index].id);
+                    new Option(currency, currency);
             }
         }
     }
