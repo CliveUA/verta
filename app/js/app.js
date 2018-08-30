@@ -4,7 +4,7 @@
 
     // App configuration
     const app = {
-        converterApiUrl: 'https://free.currencyconverterapi.com/api/v5',
+        converterApiUrl: 'https://free.currencyconverterapi.com/api/v6',
         // countryApiUrl: 'https://restcountries.eu/rest/v2',
         countryApiUrl: 'https://www.countryflags.io',
         fromAmount: document.querySelector('#fromAmount'),
@@ -108,22 +108,39 @@
     // Fetches all available currencies, stores them in
     // app.currencies and adds them to the UI.
     app.fetchCurrencies = () => {
-        const currenciesEndpoint = `${app.converterApiUrl}/currencies`;
+        // if we have the currencies cached already
+        if (window.localStorage.getItem('currencies') !== null) {
+            return new Promise(function(resolve, reject) {
+                // fetch the currencies from the local storage
+                app.currencies = JSON.parse(window.localStorage.getItem('currencies'));
 
-        return fetch(currenciesEndpoint)
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                }
-
-                throw new Error('API response was not ok.');
-            })
-            .then(function (currencies) {
-                app.currencies = currencies.results;
+                // update the ui
                 app.addCurrencies();
-            }).catch(function (error) {
-                throw new Error('There was a problem getting the currencies: ', error.message);
+
+                resolve();
             });
+        } else {
+            // if not, fetch it from the API
+            const currenciesEndpoint = `${app.converterApiUrl}/currencies`;
+
+            return fetch(currenciesEndpoint)
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+
+                    throw new Error('API response was not ok.');
+                })
+                .then(function (currencies) {
+                    app.currencies = currencies.results;
+                    app.addCurrencies(); // update the ui
+
+                    // Caches the list of currencies in local storage
+                    window.localStorage.setItem('currencies', JSON.stringify(currencies.results));
+                }).catch(function (error) {
+                    throw new Error('There was a problem getting the currencies: ', error.message);
+                });
+        }
     }
 
     // Converts the last edited input amount
