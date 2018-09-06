@@ -192,5 +192,5 @@
         app.convertFrom();
     });
 
-    app.init();
+    window.onload = () => app.init();
 })();
