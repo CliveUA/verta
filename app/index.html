@@ -11,9 +11,9 @@
 
     <!-- App icons -->
     <link rel="apple-touch-icon" href="apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">  
-    <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">  
-    <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">  
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">
     <link rel="icon" type="image/png" href="favicon.png">
 
     <link rel="stylesheet" href="css/app.css">
@@ -55,7 +55,7 @@
                     <div class="converter__form">
                         <div class="converter__input">
                             <label class="converter__label" for="from">From</label>
-                            <input class="converter__input--number" type="number" name="fromAmount" id="fromAmount" value="100" placeholder="0" autofocus>
+                            <input class="converter__input--number" type="number" name="fromAmount" id="fromAmount" value="100" placeholder="0" step="0.01" autofocus>
                         </div>
                         <div class="converter__currency">
                             <img id="fromFlag" class="converter__flag" src="https://www.countryflags.io/us/flat/24.png" alt="flag">
@@ -83,7 +83,7 @@
                     <div class="converter__form">
                         <div class="converter__input converter__input--last">
                             <label class="converter__label" for="toAmount">To</label>
-                            <input class="converter__input--number" type="number" name="toAmount" id="toAmount" placeholder="0">
+                            <input class="converter__input--number" type="number" name="toAmount" id="toAmount" step="0.01" placeholder="0">
                         </div>
                         <div class="converter__currency converter__currency--last">
                             <img id="toFlag" class="converter__flag" src="https://www.countryflags.io/ng/flat/24.png" alt="flag">
@@ -111,9 +111,9 @@
             </div>
 
             <div class="exchange-rate">
-                <strong>1</strong> 
-                <span id="fromCurrencyName"></span> = 
-                <strong id="exchangeRate"></strong> 
+                <strong>1</strong>
+                <span id="fromCurrencyName"></span> =
+                <strong id="exchangeRate"></strong>
                 <span id="toCurrencyName"></span>
             </div>
         </main>
