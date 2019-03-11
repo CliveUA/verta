@@ -5,6 +5,7 @@
     // App configuration
     const app = {
         converterApiUrl: 'https://free.currencyconverterapi.com/api/v6',
+        converterApiKey: 'apiKey=ec178eb06019b7ab8b7f',
         // countryApiUrl: 'https://restcountries.eu/rest/v2',
         countryApiUrl: 'https://www.countryflags.io',
         fromAmount: document.querySelector('#fromAmount'),
@@ -48,7 +49,7 @@
 
     // Gets the rate from @from to @to
     app.fetchRate = (from, to) => {
-        const convertEndpoint = `${app.converterApiUrl}/convert?q=${from}_${to}&compact=ultra`;
+        const convertEndpoint = `${app.converterApiUrl}/convert?q=${from}_${to}&compact=ultra&${app.converterApiKey}`;
 
         return fetch(convertEndpoint)
             .then(function (response) {
@@ -129,7 +130,7 @@
             });
         } else {
             // if not, fetch it from the API
-            const currenciesEndpoint = `${app.converterApiUrl}/currencies`;
+            const currenciesEndpoint = `${app.converterApiUrl}/currencies?${app.converterApiKey}`;
 
             return fetch(currenciesEndpoint)
                 .then(function (response) {
